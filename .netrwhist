@@ -1,7 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/bitnami'
-let g:netrw_dirhist_2='/home/bitnami/projects'
-let g:netrw_dirhist_3='/home/bitnami'
-let g:netrw_dirhist_4='/home/bitnami/projects'
-let g:netrw_dirhist_5='/home/bitnami/projects/spec'
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/darrencauthon/projects/CatDealershipCMS'
+let g:netrw_dirhist_2='/Users/darrencauthon/projects/InternationalTruckCenters'
+let g:netrw_dirhist_3='/Users/darrencauthon/projects/yanceybus'
+let g:netrw_dirhist_4='/Users/darrencauthon/projects/CatDealershipCMS'
+let g:netrw_dirhist_5='/Users/darrencauthon/Documents/Brush Art Projects/html'
+let g:netrw_dirhist_6='/Users/darrencauthon/projects/CatDealershipCMS'
+let g:netrw_dirhist_7='/Users/darrencauthon/Documents/Brush Art Projects/thompson'
+let g:netrw_dirhist_8='/Users/darrencauthon/projects/CatDealershipCMS'
+let g:netrw_dirhist_9='/Users/darrencauthon/projects/CatDealershipCMS copy'
