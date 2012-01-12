@@ -7,20 +7,26 @@ snippet rdoc
 	=begin rdoc
 		${1}
 	=end
-snippet begin
+snippet begin generic rescue
   begin
 	  ${1}
 	rescue
 		${2}
 	end
-snippet begin
+snippet begin with specific exception
 	begin
 		${3}
 	rescue ${1:Exception} => ${2:e}
 	end
 
-snippet require
+snippet require Basic require
 	require "${1}"
+	${2}
+snippet require All files relative to current file
+	Dir[File.dirname(__FILE__) + '/${1:directory}/*.rb'].each {|file| require file }
+	{$2}
+snippet require All files in a directory
+	Dir["${1:path/to/directory}/*.rb"].each {|file| require file }
 	${2}
 snippet switch 
 	case ${1:object}
@@ -198,9 +204,9 @@ snippet dirname
 # downto(0) { |n| .. }
 snippet times
 	times { |${1:n}| ${2} }
-snippet each
+snippet each {}
 	each { |${1:e}| ${2} }
-snippet ead
+snippet each do
 	each do |${1:e}|
 		${2}
 	end	
@@ -208,39 +214,39 @@ snippet each_byte
 	each_byte { |${1:byte}| ${2} }
 snippet each_char { |chr| .. }
 	each_char { |${1:chr}| ${2} }
-snippet each_key 
+snippet each_key {}
 	each_key { |${1:key}| ${2} }
-snippet each_key
+snippet each_key do
 	each_key do |${1:key}|
 		${2}
 	end
-snippet each_line 
+snippet each_line {}
 	each_line { |${1:line}| ${2} }
-snippet each_line 
+snippet each_line do
 	each_line do |${1:line}|
 		${2}
 	end		
-snippet each_value 
+snippet each_value {}
 	each_value { |${1:val}| ${2} }
-snippet each_value 
+snippet each_value do
 	each_value do |${1:val}| 
 		${2}
 	end
-snippet each_with_index 
+snippet each_with_index {}
 	each_with_index { |${1:e}, ${2:i}| ${3} }
-snippet each_with_index 
+snippet each_with_index do 
 	each_with_index do |${1:e},${2:i}|
 		${3}
 	end
-snippet inject
+snippet inject {}
 	inject(${1:init}) { |${2:mem}, ${3:var}| ${4} }
-snippet inject 
+snippet inject do 
 	inject(${1:init}) do |${2:mem}, ${3:var}|
 		${4}
 	end		
-snippet map
+snippet map {}
 	map { |${1:e}| ${2} }
-snippet map
+snippet map do
 	map do |${1:e}| 
 		${2}
 	end		
@@ -256,31 +262,31 @@ snippet all
 	all? { |${1:e}| ${2} }
 snippet any
 	any? { |${1:e}| ${2} }
-snippet cl
+snippet classify
 	classify { |${1:e}| ${2} }
-snippet collect
+snippet collect {}
 	collect { |${1:e}| ${2} }
-snippet collect 
+snippet collect do
 	collect do |${1:e}|
 		${2}
 	end
-snippet detect
+snippet detect {}
 	detect { |${1:e}| ${2} }
-snippet detect 
+snippet detect do
 	detect do |${1:e}|
 		${2}
 	end
 snippet fetch
 	fetch(${1:name}) { |${2:key}| ${3} }
-snippet find
+snippet find {}
 	find { |${1:e}| ${2} }
-snippet find
+snippet find do
 	find do |${1:e}|
 		${2}
 	end		
-snippet find_all
+snippet find_all {}
 	find_all { |${1:e}| ${2} }
-snippet find_all 
+snippet find_all do
 	find_all do |${1:e}|
 		${2}
 	end			
@@ -304,15 +310,15 @@ snippet partition
 	partition do |${1:e}|
 		${2}
 	end		
-snippet reject
+snippet reject {}
 	reject { |${1:e}| ${2} }
-snippet reject 
+snippet reject do 
 	reject do |${1:e}|
 		${2}
 	end
-snippet select
+snippet select {}
 	select { |${1:e}| ${2} }
-snippet select 
+snippet select do 
 	select do |${1:e}|
 		${2}
 	end		
@@ -330,9 +336,70 @@ snippet open
 snippet path_from_here 
 	File.join(File.dirname(__FILE__), *%2[${1:rel path here}])${2}
 # singleton_class()
-snippet singleton_class 
+snippet singleton 
 	class << self; self end
 snippet namespace
 	namespace :${1:`Filename()`} do
 		${2}
 	end
+# MiniTest
+snippet minitest Brand new unit test
+	require 'minitest/autorun'
+
+	class Test${1:class_name} < MiniTest::Unit::TestCase
+		def setup
+		end
+
+		def test_${2:first_test}
+			${3}
+		end
+	end
+snippet minitest New unit test class 
+	class Test${1:class_name} < MiniTest::Unit::TestCase
+		def setup
+		end
+
+		def test_${2:first_test}
+			${3}
+		end
+	end
+snippet minitest Brand new spec
+	require 'minitest/autorun'
+
+	describe ${1:describe_this} do
+		before do
+		end
+
+		${2}
+	end
+snippet test
+	def test_that_${1:test_method}
+		${2}
+	end
+snippet assert_equal
+	assert_equal ${1:expected}, ${2:value}
+snippet equal 
+	assert_equal ${1:expected}, ${2:value}
+snippet refute_match
+	refute_match ${1:not_expected}, ${2:value}
+snippet not_equal
+	refute_match ${1:not_expected}, ${2:value}
+snippet describe 
+	describe ${1:describe_this} do
+		before do
+		end
+
+		${2}
+	end
+snippet it  
+	it "${1}" do
+	  ${2}	
+	end
+snippet itshould
+	it "should ${1}" do
+	  ${2}	
+	end
+snippet matcher must_equal
+	${1}.must_equal ${2}
+snippet matcher wont_match 
+	${1}.wont_match ${2}
