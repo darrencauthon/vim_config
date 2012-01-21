@@ -372,7 +372,7 @@ snippet minitest Brand new spec
 
 		${2}
 	end
-snippet minitest Guard file
+snippet minitest Guardfile
 	guard 'minitest' do
 		watch(%r|^test/test_(.*)\.rb|)
 		watch(%r|^lib/(.*)([^/]+)\.rb|)     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
@@ -381,10 +381,16 @@ snippet minitest Guard file
 
 		watch(%r{^spec/.+_spec\.rb$})
 		watch(%r{^lib/(.+)\.rb$})         { |m| "spec/lib/#{m[1]}_spec.rb" }
-		watch(%r{^lib/DUI/(.+)\.rb$})         { |m| "spec/DUI/#{m[1]}_spec.rb" }
+		watch(%r{^lib/xxxxxx/(.+)\.rb$})         { |m| "spec/xxxxxx/#{m[1]}_spec.rb" }
 		watch(%r{^spec/models/.+\.rb$})   { ["spec/models", "spec/acceptance"] }
-		watch(%r{^spec/.+\.rb$})          { `say hello` }
 		watch('spec/spec_helper.rb')      { "spec" }
+	end
+snippet minitest Gemfile
+	gem 'minitest'
+	group :development do
+		gem 'guard'
+		gem 'guard-minitest', :git => 'git://github.com/aspiers/guard-minitest.git'
+		gem 'ruby_gntp'
 	end
 snippet test
 	def test_that_${1:test_method}
