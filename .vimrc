@@ -51,3 +51,5 @@ filetype indent on
 " Highlight search terms...
 set hlsearch
 set incsearch " ...dynamically as they are typed.
+
+call pathogen#infect() 
