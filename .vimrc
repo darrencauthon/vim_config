@@ -51,3 +51,12 @@ filetype indent on
 " Highlight search terms...
 set hlsearch
 set incsearch " ...dynamically as they are typed.
+
+let g:ConqueTerm_Color = 1
+let g:ConqueTerm_ReadUnfocused = 1
+command CT ConqueTerm bash
+
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>h <C-W>h
+map <leader>l <C-W>l
