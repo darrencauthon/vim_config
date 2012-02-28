@@ -1,5 +1,5 @@
 colorscheme vibrantink
-set guifont=Inconsolata:h20
+set guifont=Inconsolata:h26
 
 set cindent
 set smartindent
