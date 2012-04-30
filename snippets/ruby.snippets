@@ -25,7 +25,7 @@ snippet require Basic require
 snippet require All files relative to current file
 	Dir[File.dirname(__FILE__) + '/${1:directory}/*.rb'].each {|file| require file }
 	{$2}
-snippet require Files parent to the current file
+snippet require File parent to the current file
 	require File.expand_path(File.dirname(__FILE__) + '/../${1}')
 snippet require All files in a directory
 	Dir["${1:path/to/directory}/*.rb"].each {|file| require file }
