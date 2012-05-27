@@ -339,17 +339,6 @@ snippet namespace
 		${2}
 	end
 # MiniTest
-snippet minitest Brand new unit test
-	require 'minitest/autorun'
-
-	class Test${1:class_name} < MiniTest::Unit::TestCase
-		def setup
-		end
-
-		def test_${2:first_test}
-			${3}
-		end
-	end
 snippet minitest New unit test class 
 	class Test${1:class_name} < MiniTest::Unit::TestCase
 		def setup
@@ -359,14 +348,13 @@ snippet minitest New unit test class
 			${3}
 		end
 	end
-snippet minitest Brand new spec
-	require 'minitest/autorun'
-
+snippet minitest New unit spec
 	describe ${1:describe_this} do
 		before do
 		end
 
 		${2}
+		u
 	end
 snippet minitest Guardfile
 	guard 'minitest' do
@@ -392,6 +380,9 @@ snippet minitest spec_helper
 	require 'minitest/spec'
 	require 'minitest/autorun'
 	require './lib/{1:file_to_test}.rb'
+snippet minitest requires
+	require 'minitest/spec'
+	require 'minitest/autorun'
 snippet test
 	def test_that_${1:test_method}
 		${2}
@@ -423,3 +414,8 @@ snippet matcher must_equal
 	${1}.must_equal ${2}
 snippet matcher wont_match 
 	${1}.wont_match ${2}
+# Sinatra
+snippet sinatra Test browser
+	browser = Rack::Test::Session.new(Rack::MockSession.new(Sinatra::Application))
+snippet sinatra Last response
+	assert browser.last_response.ok?
