@@ -18,18 +18,12 @@ snippet begin with specific exception
 		${3}
 	rescue ${1:Exception} => ${2:e}
 	end
-
-snippet require Basic require
-	require "${1}"
-	${2}
-snippet require All files relative to current file
+snippet require All files deeper to current file
 	Dir[File.dirname(__FILE__) + '/${1:directory}/*.rb'].each {|file| require file }
-	{$2}
 snippet require File parent to the current file
-	require File.expand_path(File.dirname(__FILE__) + '/../${1}')
+	require File.expand_path(File.dirname(__FILE__) + '/../${1:file_to_include}')
 snippet require All files in a directory
 	Dir["${1:path/to/directory}/*.rb"].each {|file| require file }
-	${2}
 snippet switch 
 	case ${1:object}
 	when ${2:condition}
@@ -394,6 +388,10 @@ snippet minitest Gemfile
 		gem 'guard-minitest', :git => 'git://github.com/aspiers/guard-minitest.git'
 		gem 'ruby_gntp'
 	end
+snippet minitest spec_helper
+	require 'minitest/spec'
+	require 'minitest/autorun'
+	require './lib/{1:file_to_test}.rb'
 snippet test
 	def test_that_${1:test_method}
 		${2}
