@@ -7,17 +7,8 @@ snippet rdoc
 	=begin rdoc
 		${1}
 	=end
-snippet begin generic rescue
-  begin
-	  ${1}
-	rescue
-		${2}
-	end
-snippet begin with specific exception
-	begin
-		${3}
+snippet rescue with specific exception
 	rescue ${1:Exception} => ${2:e}
-	end
 snippet require All files deeper to current file
 	Dir[File.dirname(__FILE__) + '/${1:directory}/*.rb'].each {|file| require file }
 snippet require File parent to the current file
@@ -29,51 +20,10 @@ snippet switch
 	when ${2:condition}
 		${3}
 	end
-snippet case
-	case ${1:object}
-	when ${2:condition}
-		${3}
-	end
-snippet when
-	when ${1:condition}
-		${2}
-snippet def
-	def ${1:method_name}
-		${2}
-	end
-snippet method
-	def ${1:method_name}
-		${2}
-	end
-snippet if
-	if ${1:condition}
-		${2}
-	end
-snippet ifelse
-	if ${1:condition}
-		${2}
-	else
-		${3}
-	end
-snippet elseif
-	elsif ${1:condition}
-		${2}
-snippet unless
-	unless ${1:condition}
-		${2}
-	end
-snippet while
-	while ${1:condition}
-		${2}
-	end
 snippet for
 	for ${1:e} in ${2:c}
 		${3}
 	end		
-snippet until
-	until ${1:condition}
-		${2}
-	end
 snippet class class .. end
 	class ${1:`substitute(Filename(), '^.', '\u&', '')`}
 		${2}
@@ -86,49 +36,9 @@ snippet class class .. initialize .. end
 
 
 	end
-snippet class class .. < ParentClass .. initialize .. end
-	class ${1:`substitute(Filename(), '^.', '\u&', '')`} < ${2:ParentClass}
-		def initialize(${3:args})
-			${4}
-		end
-
-
-	end
-snippet class ClassName = Struct .. do .. end
-	${1:`substitute(Filename(), '^.', '\u&', '')`} = Struct.new(:${2:attr_names}) do
-		def ${3:method_name}
-			${4}
-		end
-
-
-	end
-snippet class class BlankSlate .. initialize .. end
-	class ${1:BlankSlate}
-		instance_methods.each { |meth| undef_method(meth) unless meth =~ /\A__/ }
 snippet class class << self .. end
-	class << ${1:self}
-		${2}
-	end
-# class .. < DelegateClass .. initialize .. end
-snippet cla-
-	class ${1:`substitute(Filename(), '^.', '\u&', '')`} < DelegateClass(${2:ParentClass})
-		def initialize(${3:args})
-			super(${4:del_obj})
-
-			${5}
-		end
-
-
-	end
-snippet module module .. end
-	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
-		${2}
-	end
-snippet module module .. module_function .. end
-	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
-		module_function
-
-		${2}
+	class << self
+		${1}
 	end
 snippet module module .. ClassMethods .. end
 	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
@@ -144,16 +54,8 @@ snippet module module .. ClassMethods .. end
 			receiver.extend         ClassMethods
 			receiver.send :include, InstanceMethods
 		end
+		u
 	end
-# attr_reader
-snippet reader
-	attr_reader :${1:attr_names}
-# attr_writer
-snippet writer
-	attr_writer :${1:attr_names}
-# attr_accessor
-snippet accessor 
-	attr_accessor :${1:attr_names}
 # include Enumerable
 snippet Enumerable
 	include Enumerable
@@ -168,14 +70,6 @@ snippet Comparable
 	def <=>(other)
 		${1}
 	end
-# extend Forwardable
-snippet Forwardable
-	extend Forwardable
-# def self
-snippet defs
-	def self.${1:class_method_name}
-		${2}
-	end
 # def method_missing
 snippet method_missing 
 	def method_missing(meth, *args, &blk)
@@ -183,157 +77,54 @@ snippet method_missing
 	end
 snippet alias_method
 	alias_method :${1:new_name}, :${2:old_name}
-snippet array
-	Array.new(${1:10}) { |${2:i}| ${3} }
-snippet hash
-	Hash.new { |${1:hash}, ${2:key}| $1[$2] = ${3} }
 snippet file File.foreach() { |line| .. }
 	File.foreach(${1:"path/to/file"}) { |${2:line}| ${3} }
 snippet file File.read()
 	File.read(${1:"path/to/file"})${2}
-snippet Dir Dir.global() { |file| .. }
-	Dir.glob(${1:"dir/glob/*"}) { |${2:file}| ${3} }
-snippet Dir Dir[".."]
-	Dir[${1:"glob/**/*.rb"}]${2}
 snippet dirname
 	Filename.dirname(__FILE__)
-# downto(0) { |n| .. }
 snippet times
 	times { |${1:n}| ${2} }
 snippet each {}
 	each { |${1:e}| ${2} }
-snippet each do
-	each do |${1:e}|
-		${2}
-	end	
 snippet each_byte 
 	each_byte { |${1:byte}| ${2} }
 snippet each_char { |chr| .. }
 	each_char { |${1:chr}| ${2} }
 snippet each_key {}
 	each_key { |${1:key}| ${2} }
-snippet each_key do
-	each_key do |${1:key}|
-		${2}
-	end
 snippet each_line {}
 	each_line { |${1:line}| ${2} }
-snippet each_line do
-	each_line do |${1:line}|
-		${2}
-	end		
 snippet each_value {}
 	each_value { |${1:val}| ${2} }
-snippet each_value do
-	each_value do |${1:val}| 
-		${2}
-	end
 snippet each_with_index {}
 	each_with_index { |${1:e}, ${2:i}| ${3} }
-snippet each_with_index do 
-	each_with_index do |${1:e},${2:i}|
-		${3}
-	end
-snippet inject {}
-	inject(${1:init}) { |${2:mem}, ${3:var}| ${4} }
-snippet inject do 
-	inject(${1:init}) do |${2:mem}, ${3:var}|
-		${4}
-	end		
-snippet map {}
-	map { |${1:e}| ${2} }
-snippet map do
-	map do |${1:e}| 
-		${2}
-	end		
-snippet mapwi-
-	enum_with_index.map { |${1:e}, ${2:i}| ${3} }
+snippet reduce {}
+	reduce(${1:init}) { |${2:sum}, ${3:value}| ${4} }
 snippet sort
 	sort { |a, b| ${1} }
 snippet sort_by
 	sort_by { |${1:e}| ${2} }
-snippet sort_by_rand 
+snippet random 
 	sort_by { rand }
 snippet all
 	all? { |${1:e}| ${2} }
 snippet any
 	any? { |${1:e}| ${2} }
-snippet classify
-	classify { |${1:e}| ${2} }
-snippet collect {}
-	collect { |${1:e}| ${2} }
-snippet collect do
-	collect do |${1:e}|
-		${2}
-	end
-snippet detect {}
-	detect { |${1:e}| ${2} }
-snippet detect do
-	detect do |${1:e}|
-		${2}
-	end
+snippet find
+	find { |${1:e}| ${2} }
 snippet fetch
 	fetch(${1:name}) { |${2:key}| ${3} }
-snippet find {}
-	find { |${1:e}| ${2} }
-snippet find do
-	find do |${1:e}|
-		${2}
-	end		
-snippet find_all {}
-	find_all { |${1:e}| ${2} }
-snippet find_all do
-	find_all do |${1:e}|
-		${2}
-	end			
-snippet grep
-	grep(${1:/pattern/}) { |${2:match}| ${3} }
-snippet sub
-	${1:g}sub(${2:/pattern/}) { |${3:match}| ${4} }
-snippet scan
-	scan(${1:/pattern/}) { |${2:match}| ${3} }
-snippet scan 
-	scan(${1:/pattern/}) do |${2:match}|
-		${3}
-	end		
 snippet max
 	max { |a, b| ${1} }
 snippet min
 	min { |a, b| ${1} }
-snippet partition
+snippet partition {}
 	partition { |${1:e}| ${2} }
-snippet partition 
-	partition do |${1:e}|
-		${2}
-	end		
 snippet reject {}
 	reject { |${1:e}| ${2} }
-snippet reject do 
-	reject do |${1:e}|
-		${2}
-	end
-snippet select {}
-	select { |${1:e}| ${2} }
-snippet select do 
-	select do |${1:e}|
-		${2}
-	end		
 snippet lambda
 	lambda { |${1:args}| ${2} }
-snippet do
-	do |${1:variable}|
-		${2}
-	end
-snippet :
-	:${1:key} => ${2:"value"}${3}
-snippet open
-	open(${1:"path/or/url/or/pipe"}, "${2:w}") { |${3:io}| ${4} }
-# path_from_here()
-snippet path_from_here 
-	File.join(File.dirname(__FILE__), *%2[${1:rel path here}])${2}
-# singleton_class()
-snippet singleton 
-	class << self; self end
 snippet namespace
 	namespace :${1:`Filename()`} do
 		${2}
