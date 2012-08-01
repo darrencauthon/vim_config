@@ -171,6 +171,16 @@ snippet minitest spec_helper
 	require 'minitest/spec'
 	require 'minitest/autorun'
 	require './lib/{1:file_to_test}.rb'
+snippet minitest Rakefile
+	require 'rake/testtask'
+
+	task :default => [:test]
+
+	Rake::TestTask.new do |t|
+	  t.libs.push 'lib'
+		t.test_files = FileList['spec/xxxxxxxx/*_spec.rb']
+		t.verbose = true
+	end
 snippet minitest requires
 	require 'minitest/spec'
 	require 'minitest/autorun'
