@@ -1,1 +1,1 @@
-colorscheme vibrantink
+colorscheme zenburn
