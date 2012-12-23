@@ -1,5 +1,5 @@
 colorscheme zenburn
-set guifont=Inconsolata:h36
+set guifont=Inconsolata:h24
 
 set cindent
 set smartindent
