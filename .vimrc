@@ -36,6 +36,7 @@ nmap <silent> <leader>s :set nolist!<CR>
 set visualbell
 
 command NT NERDTree
+command W w
 
 " Intuitive backspacing in insert mode
 set backspace=indent,eol,start
