@@ -1,6 +1,8 @@
 colorscheme zenburn
 set guifont=Inconsolata:h24
 
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
 set cindent
 set smartindent
 set autoindent
@@ -61,3 +63,4 @@ map <leader>j <C-W>j
 map <leader>k <C-W>k
 map <leader>h <C-W>h
 map <leader>l <C-W>l
+map <leader>t :CtrlP<Enter>
