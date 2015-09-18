@@ -63,4 +63,4 @@ map <leader>j <C-W>j
 map <leader>k <C-W>k
 map <leader>h <C-W>h
 map <leader>l <C-W>l
-map <leader>t :CtrlP<Enter>
+map <leader>t :CtrlPMixed<Enter>
