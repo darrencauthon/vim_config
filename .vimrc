@@ -32,7 +32,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 set ruler
 
-set listchars=tab:>-,trail:·,eol:$
+"set listchars=tab:>-,trail:·,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
 
 set visualbell
